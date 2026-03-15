@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPPG Kota Tasikmalaya Tamansari 3</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+background:#e9eef3;
+margin:0;
+padding:0;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.card{
+background:white;
+width:380px;
+padding:25px;
+border-radius:10px;
+box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
+
+.header{
+text-align:center;
+margin-bottom:20px;
+}
+
+.header h2{
+margin:0;
+color:#2c3e50;
+}
+
+.header p{
+font-size:13px;
+color:#777;
+}
+
+label{
+font-size:14px;
+font-weight:bold;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:5px;
+margin-bottom:12px;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:6px;
+background:#2d7ef7;
+color:white;
+font-size:15px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1c5fd1;
+}
+
+.lokasi{
+margin-top:10px;
+font-size:13px;
+background:#f4f6f8;
+padding:10px;
+border-radius:6px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="header">
+<h2>SPPG Kota Tasikmalaya Tamansari 3</h2>
+<p>Verifikasi Titik Koordinat</p>
+</div>
+
+<label>Nama</label>
+<input type="text" id="nama">
+
+<label>NIK</label>
+<input type="text" id="nik">
+
+<button onclick="getLocation()">Ambil Titik Koordinat</button>
+
+<div class="lokasi" id="hasil">
+Koordinat belum diambil
+</div>
+
+<br>
+
+<button onclick="kirim()">Kirim</button>
+
+</div>
+
+<script>
+
+let latitude="";
+let longitude="";
+
+function getLocation(){
+
+if(navigator.geolocation){
+
+navigator.geolocation.getCurrentPosition(function(position){
+
+latitude = position.coords.latitude;
+longitude = position.coords.longitude;
+
+document.getElementById("hasil").innerHTML=
+"Latitude : "+latitude+"<br>Longitude : "+longitude;
+
+});
+
+}else{
+
+alert("GPS tidak didukung");
+
+}
+
+}
+
+function kirim(){
+
+let nama=document.getElementById("nama").value;
+let nik=document.getElementById("nik").value;
+
+alert(
+"Data terkirim\n\n"+
+"Nama: "+nama+
+"\nNIK: "+nik+
+"\nLatitude: "+latitude+
+"\nLongitude: "+longitude
+);
+
+}
+
+</script>
+
+</body>
+</html>
